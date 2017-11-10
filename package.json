@@ -4,7 +4,8 @@
   "description": "Simple API app",
   "main": "server.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "tsc && node dist/server.js"
   },
   "author": "",
   "license": "ISC",

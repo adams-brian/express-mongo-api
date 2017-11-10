@@ -15,7 +15,7 @@ class CountersRouter {
       db.collection('counters')
         .findOne()
         .then((counters) => {
-          res.json(createSuccess(counters));
+          res.json(createSuccess(counters.counters));
         })
         .catch((err) => {
           res.status(501).json(createError(err));
@@ -31,7 +31,7 @@ class CountersRouter {
           upsert: true
         })
         .then((result) => {
-          res.json(createSuccess(result))
+          res.json({status: 200, data: null, message: null})
         })
         .catch((err) => {
           res.status(501).json(createError(err));

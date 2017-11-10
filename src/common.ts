@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb';
 
 export const connection = (closure) => {
-  return MongoClient.connect('mongodb://localhost:27017/mean', (err, db) => {
+  return MongoClient.connect('mongodb://localhost:27017/api-app', (err, db) => {
     if (err)  { return console.log(err); }
     closure(db);
   });
