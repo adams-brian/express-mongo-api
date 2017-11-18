@@ -11,32 +11,36 @@ class CountersRouter {
   }
 
   private get(req: Request, res: Response) {
-    connection((db) => {
-      db.collection('counters')
-        .findOne()
-        .then((counters) => {
-          res.json(createSuccess(counters.counters));
-        })
-        .catch((err) => {
-          res.status(501).json(createError(err));
+    setTimeout(() => {
+      connection((db) => {
+        db.collection('counters')
+          .findOne()
+          .then((counters) => {
+            res.json(createSuccess(counters.counters));
+          })
+          .catch((err) => {
+            res.status(501).json(createError(err));
+          });
         });
-    });
+    }, 500);
   }
 
   private post(req: Request, res: Response, next: NextFunction): void {
-    connection((db) => {
-      db.collection('counters')
-        .findOneAndUpdate({}, req.body,
-        {
-          upsert: true
-        })
-        .then((result) => {
-          res.json({status: 200, data: null, message: null})
-        })
-        .catch((err) => {
-          res.status(501).json(createError(err));
-        });
-    });
+    setTimeout(() => {
+      connection((db) => {
+        db.collection('counters')
+          .findOneAndUpdate({}, req.body,
+          {
+            upsert: true
+          })
+          .then((result) => {
+            res.json({status: 200, data: null, message: null})
+          })
+          .catch((err) => {
+            res.status(501).json(createError(err));
+          });
+      });
+    }, 500);
   }
 
   private init(): void {
