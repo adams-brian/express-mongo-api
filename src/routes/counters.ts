@@ -22,7 +22,7 @@ class CountersRouter {
             res.status(501).json(createError(err));
           });
         });
-    }, 500);
+    }, 1000);
   }
 
   private post(req: Request, res: Response, next: NextFunction): void {
@@ -40,7 +40,7 @@ class CountersRouter {
             res.status(501).json(createError(err));
           });
       });
-    }, 500);
+    }, 1000);
   }
 
   private init(): void {
