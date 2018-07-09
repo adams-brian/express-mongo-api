@@ -3,7 +3,7 @@ import { MongoClient } from 'mongodb';
 export const connection = (closure) => {
   return MongoClient.connect('mongodb://localhost:27017', (err, client) => {
     if (err)  { return console.log(err); }
-    closure(client.db('api-app'));
+    closure(client.db('express-mongo-api'));
   });
 };
 

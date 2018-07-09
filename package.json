@@ -1,11 +1,11 @@
 {
-  "name": "api-app",
-  "version": "1.0.0",
-  "description": "Simple API app",
+  "name": "express-mongo-api",
+  "version": "0.1.0",
+  "description": "A simple API app built using Express and MongoDB",
   "main": "server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "tsc && node dist/server.js"
+    "start": "tsc && node dist/server.js"
   },
   "author": "",
   "license": "ISC",

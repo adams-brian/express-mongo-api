@@ -16,7 +16,7 @@ class CountersRouter {
         db.collection('counters')
           .findOne()
           .then((counters) => {
-            res.json(createSuccess(counters.counters));
+            res.json(createSuccess(counters === null ? [] : counters.counters));
           })
           .catch((err) => {
             res.status(501).json(createError(err));
