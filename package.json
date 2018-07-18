@@ -1,7 +1,7 @@
 {
   "name": "express-mongo-api",
   "version": "0.1.0",
-  "description": "A simple RESTful server built using Express and MongoDB",
+  "description": "A simple RESTful API server built using Express and MongoDB",
   "main": "server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

@@ -1,6 +1,6 @@
 # express-mongo-api
 
-This is a simple API app built using Express and MongoDB
+This is a simple RESTful API server built using Express and MongoDB
 
 ## Dependencies
 
