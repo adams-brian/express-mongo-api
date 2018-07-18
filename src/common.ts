@@ -1,6 +1,6 @@
-import { MongoClient } from 'mongodb';
+import { Db, MongoClient } from 'mongodb';
 
-export const connection = (closure) => {
+export const connection = (closure: (db: Db) => void) => {
   return MongoClient.connect('mongodb://localhost:27017', (err, client) => {
     if (err)  { return console.log(err); }
     closure(client.db('express-mongo-api'));

@@ -1,52 +1,39 @@
 import {Router, Request, Response, NextFunction} from 'express';
-import {ObjectId} from 'mongodb';
 import {connection, createSuccess, createError} from '../common';
+import { Db } from 'mongodb';
 
-class CountersRouter {
-  router: Router;
-
-  constructor() {
-    this.router = Router();
-    this.init();
-  }
-
-  private get(req: Request, res: Response) {
-    setTimeout(() => {
-      connection((db) => {
-        db.collection('counters')
-          .findOne()
-          .then((counters) => {
-            res.json(createSuccess(counters === null ? [] : counters.counters));
-          })
-          .catch((err) => {
-            res.status(501).json(createError(err));
-          });
+const get = (req: Request, res: Response) => {
+  setTimeout(() => {
+    connection((db) => {
+      db.collection('counters')
+        .findOne({})
+        .then((counters) => {
+          res.json(createSuccess(counters === null ? [] : counters.counters));
+        })
+        .catch((err) => {
+          res.status(501).json(createError(err));
         });
-    }, 1000);
-  }
-
-  private post(req: Request, res: Response, next: NextFunction): void {
-    setTimeout(() => {
-      connection((db) => {
-        db.collection('counters')
-          .findOneAndUpdate({}, req.body,
-          {
-            upsert: true
-          })
-          .then((result) => {
-            res.json({status: 200, data: null, message: null})
-          })
-          .catch((err) => {
-            res.status(501).json(createError(err));
-          });
       });
-    }, 1000);
-  }
+  }, 1000);
+};
 
-  private init(): void {
-    this.router.get('', this.get);
-    this.router.post('', this.post);
-  }
-}
+const post = (req: Request, res: Response, next: NextFunction) => {
+  setTimeout(() => {
+    connection((db) => {
+      db.collection('counters')
+        .replaceOne({}, req.body, { upsert: true })
+        .then((result) => {
+          res.json({status: 200, data: null, message: null})
+        })
+        .catch((err) => {
+          res.status(501).json(createError(err));
+        });
+    });
+  }, 1000);
+};
 
-export default new CountersRouter().router;
+const router = Router();
+router.get('', get);
+router.post('', post);
+
+export default router;
